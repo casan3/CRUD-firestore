@@ -1,0 +1,47 @@
+<section>
+  <mat-card class="mat-card">
+    <mat-card-title> CRUD using firestore </mat-card-title>
+    <mat-card-content class="card-content">
+      <div class="content">
+        <form>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="write your next quote"
+              #quote
+            />
+          </mat-form-field>
+        </form>
+        <button
+          mat-mini-fab
+          color="accent"
+          aria-label="Example icon button with a menu icon"
+          (click)="addQuote(quote.value)"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <mat-list>
+        <mat-list-item>
+          <span matLine>Quote list</span>
+          <button mat-icon-button (click)="edit()">
+            <mat-icon class="edit-icon">edit</mat-icon>
+         </button>
+         <button mat-icon-button (click)="delete()">
+          <mat-icon class="delete-icon">delete</mat-icon>
+       </button>
+        </mat-list-item>
+        <mat-list-item>
+          <span>Quote list</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>Quote list</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>Quote list</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</section>

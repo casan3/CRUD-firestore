@@ -1,0 +1,13 @@
+.mat-card {
+    margin-top: 100px;
+}
+.content {
+    display: flex;
+}
+
+.edit-icon {
+    color: green
+}
+.delete-icon {
+    color: red;
+}

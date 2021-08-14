@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "test-project-ee7de"
+  },
+  "targets": {
+    "test-project-ee7de": {
+      "hosting": {
+        "fullstackDemo-angular": [
+          "test-project-ee7de"
+        ]
+      }
+    }
+  }
+}
