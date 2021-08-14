@@ -24,13 +24,24 @@
       </div>
       <mat-list *ngIf="quotes$ | async as quotes">
         <mat-list-item *ngFor="let quote of quotes">
-          <span matLine>{{ quote.quote }}</span>
-          <button mat-icon-button (click)="edit()">
-            <mat-icon class="edit-icon">edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="delete(quote.id)">
-            <mat-icon class="delete-icon">delete</mat-icon>
-          </button>
+          <span matLine *ngIf="quoteIdToUpdate !== quote.id">{{ quote.quote }}</span>
+          <div *ngIf="quoteIdToUpdate === quote.id" class="edit-quote-container">
+            <input matInput matLine placeholder="{{quote.quote}}" #updatedQuote/>
+            <button mat-icon-button (click)="updateQuote(quote.id, updatedQuote.value)">
+              <mat-icon class="done-icon">done</mat-icon>
+            </button>
+            <button mat-icon-button (click)="edit(quote.id, false)">
+              <mat-icon class="close-icon">close</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="quoteIdToUpdate !== quote.id">
+            <button mat-icon-button (click)="edit(quote.id, true)">
+              <mat-icon class="edit-icon">edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteQuote(quote.id)">
+              <mat-icon class="delete-icon">delete</mat-icon>
+            </button>
+          </div>
         </mat-list-item>
       </mat-list>
     </mat-card-content>

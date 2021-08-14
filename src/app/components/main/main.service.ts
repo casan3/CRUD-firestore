@@ -28,4 +28,7 @@ export class MainService {
   async deleteQuote(idQuote: string): Promise<Message> {
     return <Promise<Message>> this.http.post("https://us-central1-test-project-ee7de.cloudfunctions.net/api/deleteQuote", {idQuote}).pipe(first()).toPromise();
   }
+  async updateQuote(idQuote: string, newValue: string): Promise<Message> {
+    return <Promise<Message>> this.http.post("https://us-central1-test-project-ee7de.cloudfunctions.net/api/updateQuote", {idQuote, newValue}).pipe(first()).toPromise();
+  }
 }

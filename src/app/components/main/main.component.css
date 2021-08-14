@@ -11,3 +11,9 @@
 .delete-icon {
     color: red;
 }
+.done-icon {
+    color: blue;
+}
+.edit-quote-container {
+    display: flex;
+}

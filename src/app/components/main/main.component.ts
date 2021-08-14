@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   msg: String = 'hi';
   resp: Message = {msg: ''};
   quotes$: Observable<Array<Quote>> = of([]);
+  quoteIdToUpdate: string = '';
 
   constructor(private mainService: MainService, private snackBar: MatSnackBar, private auth: AngularFireAuth) { }
 
@@ -33,12 +34,22 @@ export class MainComponent implements OnInit {
     this.snackBar.open(this.resp.msg, '', {duration: 3000});
   }
 
-  edit() {
-    console.log('edit quote');
+  edit(idQuote: string, edit: boolean) {
+    if(edit) {
+      this.quoteIdToUpdate = idQuote;
+    } else {
+      this.quoteIdToUpdate = '';
+    }
   }
 
-  async delete(idQuote: string) {
+  async deleteQuote(idQuote: string) {
     this.resp = await this.mainService.deleteQuote(idQuote);
+    this.snackBar.open(this.resp.msg, '', {duration: 3000});
+  }
+
+  async updateQuote(idQuote: string, updatedQuoteValue: string) {
+    this.resp = await this.mainService.updateQuote(idQuote, updatedQuoteValue);
+    this.quoteIdToUpdate = '';    
     this.snackBar.open(this.resp.msg, '', {duration: 3000});
   }
 }

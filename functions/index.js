@@ -28,4 +28,15 @@ app.post("/deleteQuote", (req, res) => {
       .catch((error) => res.status(500).send({msg: "error deleting quote"}));
 });
 
+app.post("/updateQuote", (req, res) => {
+  const data = req.body;
+  const {idQuote, newValue} = data;
+
+  db.collection("quotes")
+      .doc(idQuote)
+      .update({quote: newValue})
+      .then((resp) => res.status(200).send({msg: "quote updated"}))
+      .catch((error) => res.status(500).send({msg: "error updating quote"}));
+});
+
 exports.api = functions.https.onRequest(app);
