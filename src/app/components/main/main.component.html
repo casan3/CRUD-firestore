@@ -22,24 +22,15 @@
           <mat-icon>add</mat-icon>
         </button>
       </div>
-      <mat-list>
-        <mat-list-item>
-          <span matLine>Quote list</span>
+      <mat-list *ngIf="quotes$ | async as quotes">
+        <mat-list-item *ngFor="let quote of quotes">
+          <span matLine>{{ quote.quote }}</span>
           <button mat-icon-button (click)="edit()">
             <mat-icon class="edit-icon">edit</mat-icon>
-         </button>
-         <button mat-icon-button (click)="delete()">
-          <mat-icon class="delete-icon">delete</mat-icon>
-       </button>
-        </mat-list-item>
-        <mat-list-item>
-          <span>Quote list</span>
-        </mat-list-item>
-        <mat-list-item>
-          <span>Quote list</span>
-        </mat-list-item>
-        <mat-list-item>
-          <span>Quote list</span>
+          </button>
+          <button mat-icon-button (click)="delete(quote.id)">
+            <mat-icon class="delete-icon">delete</mat-icon>
+          </button>
         </mat-list-item>
       </mat-list>
     </mat-card-content>

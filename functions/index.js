@@ -10,10 +10,22 @@ const db = admin.firestore();
 app.use(cors());
 
 app.post("/addQuote", (req, res) => {
-  const params = req.body;
-  console.log(params);
-  db.collection("quotes").doc().set(params);
-  res.status(200).send({msg: "quote added"});
+  const newQuote = req.body;
+  db.collection("quotes")
+      .doc()
+      .set(newQuote)
+      .then((resp) => res.status(200).send({msg: "quote added"}))
+      .catch((error) => res.status(500).send({msg: "error adding quote"}));
+});
+
+app.post("/deleteQuote", (req, res) => {
+  const data = req.body;
+  const idQuote = data.idQuote;
+  db.collection("quotes")
+      .doc(idQuote)
+      .delete()
+      .then((resp) => res.status(200).send({msg: "quote deleted"}))
+      .catch((error) => res.status(500).send({msg: "error deleting quote"}));
 });
 
 exports.api = functions.https.onRequest(app);
