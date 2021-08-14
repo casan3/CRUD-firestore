@@ -3,7 +3,7 @@
     <mat-card-title> CRUD using firestore </mat-card-title>
     <mat-card-content class="card-content">
       <div class="content">
-        <form>
+        <form #myForm>
           <mat-form-field>
             <input
               matInput
@@ -17,7 +17,7 @@
           mat-mini-fab
           color="accent"
           aria-label="Example icon button with a menu icon"
-          (click)="addQuote(quote.value)"
+          (click)="addQuote(quote.value, myForm)"
         >
           <mat-icon>add</mat-icon>
         </button>

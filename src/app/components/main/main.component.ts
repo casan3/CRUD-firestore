@@ -28,9 +28,10 @@ export class MainComponent implements OnInit {
     this.quotes$ = this.mainService.getQuotes(user.email);
   }
 
-  async addQuote(quote: string) {
+  async addQuote(quote: string, form: HTMLFormElement) {
     const user: User = <User> await this.auth.user.pipe(first()).toPromise();
     this.resp = await this.mainService.addQuote(quote, user.email);
+    form.reset();
     this.snackBar.open(this.resp.msg, '', {duration: 3000});
   }
 
